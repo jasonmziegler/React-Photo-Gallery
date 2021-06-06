@@ -4,17 +4,26 @@ import axios from 'axios';
 import apiKey from './config';
 // Components
 import SearchForm from './Components/SearchForm';
+import PhotoContainer from './Components/PhotoContainer';
 
 export default class App extends Component {
   
+  constructor(){ 
+    super();
+    this.state = {
+      photoData: []
+    }
+  }
+
   componentDidMount() {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=muscle&per_page=24&format=json&nojsoncallback=1`)
       .then(res => {
-        console.log('Res', res);
+        //console.log('Res', res);
+        this.setState({
+          photoData: res.data.photos.photo
+        })
             
-      })
-      .then(resData => {
-        console.log(resData);
+        console.log('Photo Data: ', this.state.photoData)
       })
       .catch(err => {
         console.log(err);
@@ -39,32 +48,7 @@ export default class App extends Component {
         </nav>
 
 
-        {/* Use Fetch to connect to Flickr API, and .then parse with .json(), .then this.setState,  .catch errors */}
-        {/*Turn photoContainer into a component, and create a photo component, pass data prop to PhotoContainer*/}
-        <div className="photo-container">
-          <h2>Results</h2>
-          <ul>
-            <li>
-              <img src="https://farm5.staticflickr.com/4334/37032996241_4c16a9b530.jpg" alt="" />
-            </li>
-            <li>
-              <img src="https://farm5.staticflickr.com/4342/36338751244_316b6ee54b.jpg" alt="" />
-            </li>
-            <li>
-              <img src="https://farm5.staticflickr.com/4343/37175099045_0d3a249629.jpg" alt="" />
-            </li>
-            <li>
-              <img src="https://farm5.staticflickr.com/4425/36337012384_ba3365621e.jpg" alt="" />
-            </li>
-            {/*<!-- Not Found -->*/}
-
-            {/* Great NotFound Component and display if empty results */}
-            <li className="not-found">
-              <h3>No Results Found</h3>
-              <p>You search did not return any results. Please try again.</p>
-            </li>
-          </ul>
-        </div>
+        <PhotoContainer photoData={this.state.photoData}/>
 
       </div>
     );
