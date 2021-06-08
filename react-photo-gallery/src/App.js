@@ -4,6 +4,7 @@ import axios from 'axios';
 import apiKey from './config';
 // Components
 import SearchForm from './Components/SearchForm';
+import Nav from './Components/Nav';
 import PhotoContainer from './Components/PhotoContainer';
 
 export default class App extends Component {
@@ -37,17 +38,8 @@ export default class App extends Component {
         {/* Check Data Fetching in React Search Form Component */}
         <SearchForm />
 
-        <nav className="main-nav">
-
-          {/* Use React Router for these?*/}
-          <ul>
-            <li><a href='#'>Cats</a></li>
-            <li><a href='#'>Dogs</a></li>
-            <li><a href='#'>Computers</a></li>
-          </ul>
-        </nav>
-
-
+        <Nav />
+        
         <PhotoContainer photoData={this.state.photoData}/>
 
       </div>
