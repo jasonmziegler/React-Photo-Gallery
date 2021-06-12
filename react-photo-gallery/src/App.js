@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter,
-        Route
+        Route,
+        Switch
       } from 'react-router-dom'; 
 import './App.css';
 import axios from 'axios';
@@ -9,6 +10,7 @@ import apiKey from './config';
 import SearchForm from './Components/SearchForm';
 import Nav from './Components/Nav';
 import PhotoContainer from './Components/PhotoContainer';
+import Cats from './Components/Cats';
 
 export default class App extends Component {
   
@@ -56,10 +58,12 @@ export default class App extends Component {
           {/*// Turn Search form into a Componenent*/}
           {/* Check Data Fetching in React Search Form Component */}
           <SearchForm onSearch={this.performSearch} />
-
           <Nav />
-          
-          <PhotoContainer photoData={this.state.photoData}/>
+          <Switch>
+            <Route exact path="/" render={ () => <PhotoContainer photoData={this.state.photoData}/>}/>
+            <Route exact path="/cats" render={ () => <Cats onSearch={this.performSearch} photoData={this.state.photoData}/>}/>
+            <Route path="/:query" render={ () => <PhotoContainer onSearch={this.performSearch} photoData={this.state.photoData}/>}/>
+          </Switch>
 
         </div>
       </BrowserRouter>
