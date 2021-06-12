@@ -2,7 +2,7 @@ import React from 'react';
 import PhotoContainer from './PhotoContainer';
 
 const Cats = (props) => {
-        props.onSearch('cats');
+        //props.onSearch('cats');
         
         return(
         <PhotoContainer photoData={props.photoData} />

@@ -61,7 +61,7 @@ export default class App extends Component {
           <Nav />
           <Switch>
             <Route exact path="/" render={ () => <PhotoContainer photoData={this.state.photoData}/>}/>
-            <Route exact path="/cats" render={ () => <Cats onSearch={this.performSearch} photoData={this.state.photoData}/>}/>
+            <Route exact path="/cats" render={ () => {this.performSearch("cats"); return(<Cats onSearch={this.performSearch} photoData={this.state.photoData}/>)}}/>
             <Route path="/:query" render={ () => <PhotoContainer onSearch={this.performSearch} photoData={this.state.photoData}/>}/>
           </Switch>
 
