@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import {BrowserRouter,
+        Route
+      } from 'react-router-dom'; 
 import './App.css';
 import axios from 'axios';
 import apiKey from './config';
@@ -48,16 +51,18 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        {/*// Turn Search form into a Componenent*/}
-        {/* Check Data Fetching in React Search Form Component */}
-        <SearchForm onSearch={this.performSearch} />
+      <BrowserRouter>
+        <div className="container">
+          {/*// Turn Search form into a Componenent*/}
+          {/* Check Data Fetching in React Search Form Component */}
+          <SearchForm onSearch={this.performSearch} />
 
-        <Nav />
-        
-        <PhotoContainer photoData={this.state.photoData}/>
+          <Nav />
+          
+          <PhotoContainer photoData={this.state.photoData}/>
 
-      </div>
+        </div>
+      </BrowserRouter>
     );
   }
 }
