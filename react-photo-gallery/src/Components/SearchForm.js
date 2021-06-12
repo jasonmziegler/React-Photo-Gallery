@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+//import {Redirect} from 'react-router-dom';
+
 export default class SearchForm extends Component {
 
     state = {
@@ -12,8 +14,13 @@ export default class SearchForm extends Component {
     handleSubmit = e => {
         e.preventDefault();
         //this is sending the search value to the onSearch function in App
-        this.props.onSearch(this.query.value)
+        let query = this.query.value;
         e.currentTarget.reset();
+        // TODO: redirect to the search path with the value
+        this.props.onSearch(query);
+        
+       this.props.history.push(`search/${query}`);
+        
     }
 
     render() {

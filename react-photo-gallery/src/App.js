@@ -10,14 +10,17 @@ import apiKey from './config';
 import SearchForm from './Components/SearchForm';
 import Nav from './Components/Nav';
 import PhotoContainer from './Components/PhotoContainer';
-import Cats from './Components/Cats';
+//import Cats from './Components/Cats';
 
 export default class App extends Component {
   
   constructor(){ 
     super();
     this.state = {
-      photoData: []
+      photoData: [],
+      catsData:[],
+      dogsData:[],
+      computersData:[]
     }
   }
 
@@ -27,6 +30,45 @@ export default class App extends Component {
         //console.log('Res', res);
         this.setState({
           photoData: res.data.photos.photo
+        })
+            
+        //console.log('Photo Data: ', this.state.photoData)
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+      axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=cats&per_page=24&format=json&nojsoncallback=1`)
+      .then(res => {
+        //console.log('Res', res);
+        this.setState({
+          catsData: res.data.photos.photo
+        })
+            
+        //console.log('Photo Data: ', this.state.photoData)
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+      axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=dogs&per_page=24&format=json&nojsoncallback=1`)
+      .then(res => {
+        //console.log('Res', res);
+        this.setState({
+          dogsData: res.data.photos.photo
+        })
+            
+        //console.log('Photo Data: ', this.state.photoData)
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+      axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=computers&per_page=24&format=json&nojsoncallback=1`)
+      .then(res => {
+        //console.log('Res', res);
+        this.setState({
+          computersData: res.data.photos.photo
         })
             
         //console.log('Photo Data: ', this.state.photoData)
@@ -61,7 +103,9 @@ export default class App extends Component {
           <Nav />
           <Switch>
             <Route exact path="/" render={ () => <PhotoContainer photoData={this.state.photoData}/>}/>
-            <Route exact path="/cats" render={ () => {this.performSearch("cats"); return(<Cats onSearch={this.performSearch} photoData={this.state.photoData}/>)}}/>
+            <Route exact path="/cats" render={ () => <PhotoContainer photoData={this.state.catsData}/>}/>
+            <Route exact path="/dogs" render={ () => <PhotoContainer photoData={this.state.dogsData}/>}/>
+            <Route exact path="/computers" render={ () => <PhotoContainer photoData={this.state.computersData}/>}/>
             <Route path="/:query" render={ () => <PhotoContainer onSearch={this.performSearch} photoData={this.state.photoData}/>}/>
           </Switch>
 
