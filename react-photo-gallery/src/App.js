@@ -22,6 +22,7 @@ export default class App extends Component {
     }
   }
 
+  // Function will load images for static routes
   componentDidMount() {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=beach&per_page=24&format=json&nojsoncallback=1`)
       .then(res => {
@@ -63,7 +64,7 @@ export default class App extends Component {
         console.log(err);
       });
   }
-
+  // function accepts a query parameter and requests data from Flickr API with query parameter
   performSearch = (query) => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(res => {
