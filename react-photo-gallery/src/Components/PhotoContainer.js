@@ -1,11 +1,11 @@
 import React from 'react';
 import Photo from './Photo';
 import NotFound from './NotFound';
-import { useParams } from 'react-router';
+//import { useParams } from 'react-router';
 
 const PhotoContainer = (props) => {
-        let params = useParams();
-        console.log(params);
+        //let params = useParams();
+        //console.log(params);
         // if (this.props.query) {
         //   this.props.onSearch(this.props.query);
         // }
@@ -21,14 +21,9 @@ const PhotoContainer = (props) => {
                 secret={photo.secret}
                 title={props.title}
             />);
-        
-//   let farmId = photo.farm;
-//   let serverId = photo.server;
-//   let id = photo.id;
-//   let secret = photo.secret;
+
         return(            
         <div className="photo-container">
-
         {/* Use Fetch to connect to Flickr API, and .then parse with .json(), .then this.setState,  .catch errors */}
         {/*Turn photoContainer into a component, and create a photo component, pass data prop to PhotoContainer*/}
         <h2>Results</h2>

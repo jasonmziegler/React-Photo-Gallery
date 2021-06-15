@@ -1,13 +1,8 @@
 import React, {Component} from 'react';
 import { withRouter } from "react-router";
-//import {Redirect} from 'react-router-dom';
-//import { useHistory } from 'react-router-dom';
 
 class SearchForm extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.handleSubmit = this.handleSubmit.bind(this);
-    // }
+    
     state = {
         searchText: ''
     }

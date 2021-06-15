@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const Nav = () => {
     return(
         <nav className="main-nav">
-    {/* Use React Router for these?*/}
+    {/* Use React Router for these*/}
     <ul>
     <li><NavLink to="/cats">Cats</NavLink></li>
     <li><NavLink to="/dogs">Dogs</NavLink></li>
@@ -13,6 +13,5 @@ const Nav = () => {
 </nav>
     );
 }
-
 
 export default Nav;
