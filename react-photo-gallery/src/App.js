@@ -27,12 +27,9 @@ export default class App extends Component {
   componentDidMount() {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=beach&per_page=24&format=json&nojsoncallback=1`)
       .then(res => {
-        //console.log('Res', res);
         this.setState({
           photoData: res.data.photos.photo
         })
-            
-        //console.log('Photo Data: ', this.state.photoData)
       })
       .catch(err => {
         console.log(err);
@@ -40,12 +37,11 @@ export default class App extends Component {
 
       axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=cats&per_page=24&format=json&nojsoncallback=1`)
       .then(res => {
-        //console.log('Res', res);
-        this.setState({
+       this.setState({
           catsData: res.data.photos.photo
         })
             
-        //console.log('Photo Data: ', this.state.photoData)
+       
       })
       .catch(err => {
         console.log(err);

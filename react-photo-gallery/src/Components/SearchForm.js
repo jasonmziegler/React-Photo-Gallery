@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
+import { withRouter } from "react-router";
 //import {Redirect} from 'react-router-dom';
+//import { useHistory } from 'react-router-dom';
 
-export default class SearchForm extends Component {
-
+class SearchForm extends Component {
+    // constructor(props) {
+    //     super(props);
+    //     this.handleSubmit = this.handleSubmit.bind(this);
+    // }
     state = {
         searchText: ''
     }
@@ -12,14 +17,16 @@ export default class SearchForm extends Component {
     }
 
     handleSubmit = e => {
+        const { history } = this.props;
+        //let history = useHistory();
         e.preventDefault();
         //this is sending the search value to the onSearch function in App
         let query = this.query.value;
         e.currentTarget.reset();
-        // TODO: redirect to the search path with the value
-        this.props.onSearch(query);
         
-       this.props.history.push(`search/${query}`);
+        this.props.onSearch(query);
+        // redirect to the search path with the value
+        history.push(`${query}`);
         
     }
 
@@ -43,3 +50,6 @@ export default class SearchForm extends Component {
         )
     }
 }
+
+
+export default withRouter(SearchForm);
