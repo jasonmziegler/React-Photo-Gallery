@@ -24,7 +24,7 @@ export default class App extends Component {
 
   // Function will load images for static routes
   componentDidMount() {
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=beach&per_page=24&format=json&nojsoncallback=1`)
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=animal&per_page=24&format=json&nojsoncallback=1`)
       .then(res => {
         this.setState({
           photoData: res.data.photos.photo
